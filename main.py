@@ -17,5 +17,17 @@ def main():
         return
     print(f"Loaded {len(df)} rows.")
 
+    print(f"Writing to {args.output}...")
+    with pd.ExcelWriter(args.output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Data')
+        worksheet = writer.sheets['Data']
+        
+        # Автоширина колонок
+        for column_cells in worksheet.columns:
+            length = max(len(str(cell.value)) for cell in column_cells)
+            worksheet.column_dimensions[column_cells[0].column_letter].width = length + 2
+            
+    print("Done!")
+
 if __name__ == "__main__":
     main()
