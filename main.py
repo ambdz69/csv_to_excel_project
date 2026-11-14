@@ -16,6 +16,10 @@ def main():
     except FileNotFoundError:
         print(f"Error: File {args.input} not found.")
         return
+    
+    if df.empty:
+        print("Warning: CSV is empty.")
+    
     print(f"Loaded {len(df)} rows.")
 
     print(f"Writing to {args.output}...")
