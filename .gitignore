@@ -1,0 +1,19 @@
+# Окружения
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+
+# Данные (входные и выходные)
+input/
+output/
+*.xlsx
+*.csv
+
+# Логи и секреты
+*.log
+.env
