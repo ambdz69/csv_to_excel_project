@@ -1,4 +1,5 @@
 import argparse
+import pandas as pd
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Convert CSV to formatted Excel")
@@ -6,6 +7,15 @@ def parse_args():
     parser.add_argument("--output", required=True, help="Path to output XLSX")
     return parser.parse_args()
 
-if __name__ == "__main__":
+def main():
     args = parse_args()
-    print(f"Converting {args.input} to {args.output}")
+    print(f"Reading {args.input}...")
+    try:
+        df = pd.read_csv(args.input)
+    except FileNotFoundError:
+        print(f"Error: File {args.input} not found.")
+        return
+    print(f"Loaded {len(df)} rows.")
+
+if __name__ == "__main__":
+    main()
